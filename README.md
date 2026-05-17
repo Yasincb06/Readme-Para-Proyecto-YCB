@@ -203,18 +203,6 @@ erDiagram
         int id_item FK
     }
 
-    usuarios ||--o{ favoritos : "guarda"
-    items_terraria ||--o{ favoritos : "guardado en"
-    items_terraria ||--o| armas : "es"
-    items_terraria ||--o{ ingredientes_receta : "necesita"
-    items_terraria ||--o{ ingredientes_receta : "es ingrediente de"
-    items_terraria ||--o| items_terraria : "se craftea en (estacion)"
-    jefes ||--o{ botines_jefes : "dropea"
-    items_terraria ||--o{ botines_jefes : "dropeado por"
-    enemigos ||--o{ botines_enemigos : "dropea"
-    items_terraria ||--o{ botines_enemigos : "dropeado por"
-```
-
 ---
 
 ##  Manual de usuario
