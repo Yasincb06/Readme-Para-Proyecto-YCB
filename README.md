@@ -55,55 +55,19 @@ src/main/resources/html/
 
 ---
 
-## Diagrama de clases
+## Clases del modelo
 
-```mermaid
-classDiagram
-    class FuenteDrop {
-        <<interface>>
-        +getId() int
-        +getNombre() String
-        +getRutaImagen() String
-    }
-    class Jefe {
-        -int idJefe
-        -String nombre
-        -String rutaImagen
-    }
-    class Enemigo {
-        -int idEnemigo
-        -String nombre
-        -String rutaImagen
-    }
-    class Item {
-        -int idItem
-        -String nombre
-        -String tipo
-        -boolean esCrafteable
-        -List ingredientes
-        -List fuentes
-    }
-    class Arma {
-        -String clase
-        -int dano
-    }
-    class Usuario {
-        -String email
-        -boolean esAdmin
-        -List favoritos
-    }
-    class Ingrediente {
-        -Item item
-        -int cantidad
-    }
+**`FuenteDrop`** — Interfaz implementada por `Jefe` y `Enemigo`. Define los métodos `getId()`, `getNombre()` y `getRutaImagen()` para que ambas clases puedan tratarse igual cuando se muestra quién dropea un ítem.
 
-    FuenteDrop <|.. Jefe
-    FuenteDrop <|.. Enemigo
-    Item <|-- Arma
-    Item o-- Ingrediente
-    Item o-- FuenteDrop
-    Usuario o-- Item
-```
+**`Item`** — Clase base de todos los objetos del juego. Tiene los atributos comunes: `idItem`, `nombre`, `descripcion`, `tipo`, `esCrafteable` y `rutaImagen`. Si es crafteable, también guarda la estación necesaria y una lista de `Ingrediente`. Si no es crafteable, guarda una lista de `FuenteDrop` con quién lo dropea.
+
+**`Arma`** — Extiende `Item`. Añade `clase` (Melee, Ranged, Invocador) y `dano`.
+
+**`Ingrediente`** — Clase simple que guarda un `Item` (el material) y una `cantidad`. Se usa para representar cada ingrediente de una receta.
+
+**`Jefe`** y **`Enemigo`** — Implementan `FuenteDrop`. Representan las entidades que dropean ítems al ser derrotadas.
+
+**`Usuario`** — Guarda `email`, `nombre`, `contrasena` y `esAdmin`. También tiene una lista de `Item` con sus favoritos guardados.
 
 ---
 
@@ -170,7 +134,7 @@ Elige una categoría para ver los ítems de ese tipo.
 **Ficha de ítem**
 Pulsa un ítem para ver su descripción. Si se craftea verás los ingredientes y la mesa necesaria. Si se dropea verás quién lo suelta.
 
+
 **Favoritos**
 Pulsa "Guardar objeto" en cualquier ficha para guardarlo. Accede a tu lista desde el menú.
-
 
